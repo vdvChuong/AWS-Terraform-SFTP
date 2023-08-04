@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket1" {
-  bucket = "my-tf-test-bucket"
+  bucket = "tf-test-bucket-8-4"
 
   tags = {
     Environment = "Dev"
