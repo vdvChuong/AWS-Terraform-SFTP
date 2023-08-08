@@ -1,3 +1,4 @@
 # Terraform-AWS-Delivery
 
-+ Terraform on Azure DevOps -> AWS cloud
++ Deploy AWS Transfer Family - SFTP server
++ Using Terraform on Azure DevOps -> AWS cloud
