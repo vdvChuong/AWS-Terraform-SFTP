@@ -27,7 +27,8 @@ resource "aws_transfer_ssh_key" "tf_ssh_key" {
 resource "aws_transfer_tag" "zone_id" {
   resource_arn = aws_transfer_server.sftp.arn
   key          = "transfer:route53HostedZoneId"
-  value        = "/hostedzone/Z00133922PAJIFNWNF0T5"
+  #value        = "/hostedzone/Z00133922PAJIFNWNF0T5"
+  value        = "/hostedzone/${aws_route53_zone.main.zone_id}"
 }
 
 resource "aws_transfer_tag" "hostname" {
