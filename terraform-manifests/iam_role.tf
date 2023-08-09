@@ -1,7 +1,42 @@
 resource "aws_iam_role" "tftest_role" {
   name               = "tftest-sftp"
-#   description        = "tf test role"
-  managed_policy_arns = [aws_iam_policy.s3policy.arn]
+  description        = "terraform role"
+  #managed_policy_arns = [aws_iam_policy.s3policy.arn]
+
+  inline_policy {
+    name = "tf-sftp-inline-policy"
+
+    policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Sid = "AllowListingOfUserFolder",
+        Action = [
+          "s3:ListBucket",
+          "s3:GetBucketLocation"
+        ],
+        Effect = "Allow",
+        Resource = [
+          "arn:aws:s3:::binhn-sftp-test"
+        ]
+      },
+      {
+        Sid = "HomeDirObjectAccess",
+        Effect = "Allow",
+        Action = [
+          "s3:PutObject",
+          "s3:GetObject",
+          "s3:DeleteObject",
+          "s3:DeleteObjectVersion",
+          "s3:GetObjectVersion",
+          "s3:GetObjectACL",
+          "s3:PutObjectACL"
+        ],
+        Resource = "arn:aws:s3:::binhn-sftp-test/*"
+      }
+    ]
+    })
+  }
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -17,36 +52,3 @@ resource "aws_iam_role" "tftest_role" {
   })
 
 }
-
-
-
-#   inline_policy {
-#     name = "tf-inline-policy"
-
-#     policy = jsonencode({
-#       Version = "2012-10-17"
-#       Statement = [
-#       {
-#         Effect = "Allow"
-#         Principal = {
-#         Service = "transfer.amazonaws.com"
-#         }
-#         Action = "sts:AssumeRole"
-#       },
-#       ]
-#     })
-#   }
-
-
-#   inline_policy {
-#     name   = "policy-8675309"
-#     policy = data.aws_iam_policy_document.inline_policy.json
-#   }
-
-
-# data "aws_iam_policy_document" "inline_policy" {
-#   statement {
-#     actions   = ["ec2:DescribeAccountAttributes"]
-#     resources = ["*"]
-#   }
-# }
