@@ -8,6 +8,11 @@ resource "aws_transfer_server" "sftp" {
 
   domain = "S3"
 
+  depends_on = [
+    aws_iam_role.tftest_role,
+    aws_route53_zone.main
+  ]
+
 }
 
 resource "aws_transfer_user" "sftp_user" {
