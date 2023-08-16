@@ -1,10 +1,9 @@
 resource "aws_iam_role" "tftest_role" {
-  name               = "tftest-sftp"
-  description        = "terraform role"
-  #managed_policy_arns = [aws_iam_policy.s3policy.arn]
+  name               = "${var.PROJECT}-sftp"
+  description        = "Terraform role"
 
   inline_policy {
-    name = "tf-sftp-inline-policy"
+    name = "${var.PROJECT}-inline-sftp"
 
     policy = jsonencode({
     Version = "2012-10-17",
