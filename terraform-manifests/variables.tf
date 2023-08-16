@@ -19,14 +19,3 @@ variable "SFTP_USER" {
 variable "SSH_public_key" { 
     description = " SSH public key to connect to SFTP Server"
 }
-
-# variable "SFTP_SERVER_ID" { 
-#     description = "SFTP server ID" 
-#     default     = "tftestuser" 
-# }
-
-# variable "bucket_prefix" {
-#     type        = string
-#     description = "(required since we are not using 'bucket') Creates a unique bucket name beginning with the specified prefix"
-#     default     = "my-s3bucket-"
-# }

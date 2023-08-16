@@ -1,6 +1,5 @@
 resource "aws_iam_role" "tftest_role" {
   name               = "${var.PROJECT}-sftp"
-  description        = "Terraform role"
 
   inline_policy {
     name = "${var.PROJECT}-inline-sftp"
@@ -16,7 +15,7 @@ resource "aws_iam_role" "tftest_role" {
         ],
         Effect = "Allow",
         Resource = [
-          "arn:aws:s3:::binhn-sftp-test"
+          "arn:aws:s3:::${var.BUCKET_NAME}"
         ]
       },
       {
@@ -31,7 +30,7 @@ resource "aws_iam_role" "tftest_role" {
           "s3:GetObjectACL",
           "s3:PutObjectACL"
         ],
-        Resource = "arn:aws:s3:::binhn-sftp-test/*"
+        Resource = "arn:aws:s3:::${var.BUCKET_NAME}/*"
       }
     ]
     })

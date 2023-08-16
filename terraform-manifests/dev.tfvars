@@ -1,6 +1,6 @@
 AWS_REGION = "ap-southeast-2"
 
-PROJECT = "client_tf"
+PROJECT = "clientTF"
 
 BUCKET_NAME = "binhn-sftp-test"
 
