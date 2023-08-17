@@ -1,12 +1,12 @@
 resource "aws_transfer_server" "sftp" {
   
-  protocols   = ["SFTP"]
+  protocols              = ["SFTP"]
 
   identity_provider_type = "SERVICE_MANAGED"
 
-  endpoint_type = "PUBLIC"
+  endpoint_type          = "PUBLIC"
 
-  domain = "S3"
+  domain                 = "S3"
 
   depends_on = [
     aws_iam_role.tftest_role,
@@ -16,9 +16,9 @@ resource "aws_transfer_server" "sftp" {
 }
 
 resource "aws_transfer_user" "sftp_user" {
-  server_id = aws_transfer_server.sftp.id
-  user_name = var.SFTP_USER
-  role      = aws_iam_role.tftest_role.arn
+  server_id      = aws_transfer_server.sftp.id
+  user_name      = var.SFTP_USER
+  role           = aws_iam_role.tftest_role.arn
   home_directory = "/${var.BUCKET_NAME}/"
 }
 

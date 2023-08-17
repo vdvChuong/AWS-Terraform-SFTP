@@ -2,13 +2,13 @@ resource "aws_iam_role" "tftest_role" {
   name               = "${var.PROJECT}-sftp"
 
   inline_policy {
-    name = "${var.PROJECT}-inline-sftp"
+    name   = "${var.PROJECT}-inline-sftp"
 
-    policy = jsonencode({
+    policy  = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {
-        Sid = "AllowListingOfUserFolder",
+        Sid    = "AllowListingOfUserFolder",
         Action = [
           "s3:ListBucket",
           "s3:GetBucketLocation"
@@ -19,7 +19,7 @@ resource "aws_iam_role" "tftest_role" {
         ]
       },
       {
-        Sid = "HomeDirObjectAccess",
+        Sid    = "HomeDirObjectAccess",
         Effect = "Allow",
         Action = [
           "s3:PutObject",
@@ -37,7 +37,7 @@ resource "aws_iam_role" "tftest_role" {
   }
 
   assume_role_policy = jsonencode({
-    Version = "2012-10-17",
+    Version   = "2012-10-17",
     Statement = [
       {
         Effect = "Allow"
